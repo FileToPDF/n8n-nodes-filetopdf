@@ -1,0 +1,58 @@
+name: Publish
+
+# Publishes to npm with a provenance attestation whenever a semver tag is pushed.
+# Required for n8n verified community nodes (from 2026-05-01, verified nodes must
+# be published via GitHub Actions with provenance — not from a local machine).
+#
+# Auth options (either works; both emit provenance):
+#   1. npm Trusted Publishing (recommended, no secret): configure this repo +
+#      workflow as a Trusted Publisher on npmjs.com. Needs npm >= 11.5, so we
+#      upgrade npm below.
+#   2. Automation token: add an NPM_TOKEN repository secret.
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write # required for provenance + trusted publishing
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Upgrade npm (trusted publishing + provenance)
+        run: npm install -g npm@latest
+
+      # n8n-workflow pulls a native dep (isolated-vm) we only need types from;
+      # skip install scripts so CI never has to compile it.
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint (verification rules)
+        run: npm run lint
+
+      - name: Publish
+        run: |
+          if [ -n "$NPM_TOKEN" ]; then
+            npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+          fi
+          npm publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

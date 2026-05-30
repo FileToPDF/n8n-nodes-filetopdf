@@ -1,0 +1,70 @@
+{
+  "name": "n8n-nodes-filetopdf",
+  "version": "0.1.0",
+  "description": "n8n community node for FileToPDF — convert files, HTML and Markdown into polished PDFs.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "filetopdf",
+    "pdf",
+    "convert",
+    "html-to-pdf",
+    "markdown-to-pdf",
+    "docx-to-pdf"
+  ],
+  "license": "MIT",
+  "homepage": "https://filetopdf.dev",
+  "author": {
+    "name": "FileToPDF",
+    "email": "support@filetopdf.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FileToPDF/n8n-nodes-filetopdf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FileToPDF/n8n-nodes-filetopdf/issues"
+  },
+  "engines": {
+    "node": ">=20.15"
+  },
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "npx rimraf dist && tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && eslint -c .eslintrc.prepublish.js nodes credentials package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/FileToPdfApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/FileToPdf/FileToPdf.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.41",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "gulp": "^5.0.0",
+    "n8n-workflow": "*",
+    "prettier": "^3.3.3",
+    "rimraf": "^5.0.10",
+    "typescript": "^5.5.4"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
