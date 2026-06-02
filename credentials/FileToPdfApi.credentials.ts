@@ -21,7 +21,7 @@ export class FileToPdfApi implements ICredentialType {
 			required: true,
 			default: '',
 			description:
-				'Your FileToPDF API key. Create one in your dashboard at filetopdf.dev. Sent as the x-api-key header.',
+				'Your FileToPDF API key (format sk_live_...). Grab one free in one click on the filetopdf.dev home page — no account required, includes 10 free conversions — or create one in your dashboard. Sent as the x-api-key header.',
 		},
 	];
 

@@ -328,7 +328,7 @@ export class FileToPdf implements INodeType {
 					show: { operation: ['convertHtml'] },
 				},
 				description:
-					'The HTML markup to render. May be a full document or a fragment; external images, fonts and stylesheets referenced by absolute URL are loaded.',
+					'The HTML markup to render. A full document or just a fragment both work — a fragment is wrapped for you. External images, fonts and stylesheets referenced by absolute URL are loaded.',
 			},
 			{
 				displayName: 'CSS',

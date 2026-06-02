@@ -33,10 +33,11 @@ chain into Google Drive, Dropbox, OneDrive, or an Email node), plus JSON metadat
 
 ## Credentials
 
-You need a FileToPDF API key. Sign up at [filetopdf.dev](https://filetopdf.dev), create an API
-key in your dashboard, and add a **FileToPDF API** credential in n8n with that key. The key is
-sent as the `x-api-key` header and validated against the zero-cost `GET /account` endpoint, which
-reports your plan and remaining credits.
+You need a FileToPDF API key. The fastest way is to grab a free key in one click on the
+[filetopdf.dev](https://filetopdf.dev) home page — no account required, and it includes 10 free
+conversions — or create one in your dashboard. Add a **FileToPDF API** credential in n8n with that
+key. The key is sent as the `x-api-key` header and validated against the zero-cost `GET /account`
+endpoint, which reports your plan and remaining credits.
 
 ## Usage
 
