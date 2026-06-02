@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-filetopdf",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "n8n community node for FileToPDF — convert files, HTML and Markdown into polished PDFs.",
   "keywords": [
     "n8n-community-node-package",

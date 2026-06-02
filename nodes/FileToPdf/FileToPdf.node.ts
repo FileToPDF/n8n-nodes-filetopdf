@@ -144,7 +144,7 @@ export class FileToPdf implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'FileToPDF',
 		name: 'fileToPdf',
-		icon: 'file:filetopdf.svg',
+		icon: { light: 'file:filetopdf.svg', dark: 'file:filetopdf.dark.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
